@@ -30,14 +30,14 @@ const CARD_LAYOUT_CONFIG_DESKTOP = [
 ];
 
 const CARD_LAYOUT_CONFIG_MOBILE = [
-    { left: '35%',  top: '65%', zIndex: 32 }, 
-    { left: '10%',  top: '75%', zIndex: 35 }, 
-    { left: '65%',  top: '70%', zIndex: 30 }, 
-    { left: '45%',  top: '85%', zIndex: 25 }, 
-    { left: '-5%',  top: '60%', zIndex: 37 }, 
-    { left: '85%',  top: '80%', zIndex: 36 }, 
-    { left: '-10%', top: '90%', zIndex: 36 }, 
-    { left: '75%',  top: '95%', zIndex: 10 }, 
+    { left: '25%',  top: '55%', zIndex: 32 }, 
+    { left: '-10%', top: '70%', zIndex: 35 }, 
+    { left: '75%',  top: '60%', zIndex: 30 }, 
+    { left: '40%',  top: '90%', zIndex: 25 }, 
+    { left: '-25%', top: '45%', zIndex: 37 }, 
+    { left: '95%',  top: '85%', zIndex: 36 }, 
+    { left: '-20%', top: '100%', zIndex: 36 }, 
+    { left: '85%',  top: '110%', zIndex: 10 }, 
 ];
 
 // --- DATA: Defined with RANDOMIZED SCALES (大小错落) & ROTATIONS (随机旋转) ---
@@ -337,7 +337,7 @@ const Hero: React.FC = () => {
                         <div className="absolute inset-[-50%] bg-white transform-preserve-3d" style={{ transform: `translateZ(${DEPTHS.FLOOR}px)` }} />
                         
                         {/* 1. Main Title - Moved UP slightly to 28% to balance the bottom card pile */}
-                        <div className="absolute top-[28%] left-0 w-full text-center pointer-events-none" style={{ transform: `translateZ(${DEPTHS.TEXT}px) rotateX(-10deg)` }}>
+                        <div className={`absolute ${isMobile ? 'top-[15%]' : 'top-[28%]'} left-0 w-full text-center pointer-events-none`} style={{ transform: `translateZ(${DEPTHS.TEXT}px) rotateX(-10deg)` }}>
                              <motion.div 
                                 className="pointer-events-auto inline-block" 
                                 initial={{ opacity: 0, y: 150 }}

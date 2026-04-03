@@ -88,7 +88,7 @@ const CONTACT_CARDS_MOBILE = [
         value: '+86 186 2517 5759',
         color: '#3B82F6',
         icon: ICONS.Phone,
-        position: { x: '-50%', y: '-150%' }, 
+        position: { x: '-50%', y: -150 }, 
         rotation: 5,
         hoverRotation: 0
     },
@@ -98,7 +98,7 @@ const CONTACT_CARDS_MOBILE = [
         value: '1368069338@qq.com',
         color: '#F97316',
         icon: ICONS.Email,
-        position: { x: '-50%', y: '0%' }, 
+        position: { x: '-50%', y: 0 }, 
         rotation: -3,
         hoverRotation: 0
     },
@@ -108,7 +108,7 @@ const CONTACT_CARDS_MOBILE = [
         value: 'JayNeySil',
         color: '#07C160',
         icon: ICONS.WeChat,
-        position: { x: '-50%', y: '150%' }, 
+        position: { x: '-50%', y: 150 }, 
         rotation: 4,
         hoverRotation: 0,
         qrCode: WECHAT_QR_CODE_URL
@@ -119,7 +119,7 @@ const CONTACT_CARDS_MOBILE = [
         value: '1804147528',
         color: '#FF2442',
         icon: ICONS.Xiaohongshu,
-        position: { x: '-50%', y: '300%' }, 
+        position: { x: '-50%', y: 300 }, 
         rotation: -2,
         hoverRotation: 0 
     }
@@ -157,12 +157,42 @@ const Card3D: React.FC<{ item: any; index: number; isMobile?: boolean }> = ({ it
     const [isHovered, setIsHovered] = useState(false);
     const [copied, setCopied] = useState(false);
 
-    const handleCopy = (e: React.MouseEvent) => {
+    const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
         e.stopPropagation();
-        navigator.clipboard.writeText(item.value);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        if (isMobile) {
+            if (!isHovered) {
+                setIsHovered(true);
+            } else {
+                navigator.clipboard.writeText(item.value);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            }
+        } else {
+            navigator.clipboard.writeText(item.value);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
     };
+
+    // Add a global click listener to close the card on mobile when clicking outside
+    React.useEffect(() => {
+        if (!isMobile || !isHovered) return;
+        
+        const handleGlobalClick = () => {
+            setIsHovered(false);
+        };
+        
+        // Use a small delay to prevent immediate closing from the same click
+        setTimeout(() => {
+            window.addEventListener('click', handleGlobalClick);
+            window.addEventListener('touchstart', handleGlobalClick);
+        }, 10);
+        
+        return () => {
+            window.removeEventListener('click', handleGlobalClick);
+            window.removeEventListener('touchstart', handleGlobalClick);
+        };
+    }, [isMobile, isHovered]);
 
     return (
         <motion.div
@@ -173,13 +203,19 @@ const Card3D: React.FC<{ item: any; index: number; isMobile?: boolean }> = ({ it
                 x: item.position.x, 
                 y: item.position.y,
                 zIndex: isHovered ? 100 : 10,
+                touchAction: "manipulation"
             }}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: index * 0.1, type: "spring" }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={handleCopy}
+            onMouseEnter={() => !isMobile && setIsHovered(true)}
+            onMouseLeave={() => !isMobile && setIsHovered(false)}
+            onClick={handleInteraction}
+            onTouchEnd={(e) => {
+                // Prevent default to avoid double firing with onClick
+                e.preventDefault();
+                handleInteraction(e);
+            }}
         >
             <motion.div
                 className="relative cursor-pointer"

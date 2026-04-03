@@ -489,15 +489,18 @@ const NameTilt: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 const MobileProfile: React.FC<{ experienceData: any[] }> = ({ experienceData }) => {
     const [selectedExp, setSelectedExp] = useState<any>(null);
     return (
-        <section className="w-full bg-white px-6 py-16 flex flex-col gap-12 relative z-20 overflow-hidden">
+        <section className="w-full bg-[#fafafa] px-6 py-16 flex flex-col gap-12 relative z-20 overflow-hidden">
             {/* Header */}
             <div className="flex flex-col items-center gap-6 mt-8">
-                <div className="w-48 h-64 rounded-[2rem] overflow-hidden shadow-2xl relative">
-                    <img 
-                        src="https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E6%88%91%E8%87%AA%E5%B7%B11.webp" 
-                        alt="Profile" 
-                        className="w-full h-full object-cover"
-                    />
+                <div className="w-48 h-64 rounded-[2rem] bg-white p-3 shadow-2xl relative">
+                    <div className="w-full h-full relative overflow-hidden rounded-[1.5rem] bg-gray-100">
+                        <img 
+                            src="https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E6%88%91%E8%87%AA%E5%B7%B11.webp" 
+                            alt="Profile" 
+                            className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.1)] rounded-[1.5rem] pointer-events-none" />
+                    </div>
                 </div>
                 <div className="text-center">
                     <h2 className="text-5xl font-albert-black text-black leading-none mb-2 tracking-tighter">
@@ -524,22 +527,40 @@ const MobileProfile: React.FC<{ experienceData: any[] }> = ({ experienceData }) 
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.1 }}
                         onClick={() => setSelectedExp(item)}
-                        className="bg-white rounded-[2rem] p-6 shadow-xl border border-gray-100 flex flex-col gap-3 relative overflow-hidden"
+                        className="relative rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer overflow-hidden"
                     >
-                        <div className="absolute top-0 left-0 w-2 h-full" style={{ backgroundColor: item.color }} />
-                        <div className="flex justify-between items-start pl-4">
-                            <h4 className="text-xl font-albert-black text-black">{item.company}</h4>
-                            <span className="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{item.year}</span>
+                        {/* Glassmorphism Background */}
+                        <div className="absolute inset-0 bg-white/60 backdrop-blur-md border border-white/60 rounded-[2rem] z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-60 pointer-events-none z-10" />
+                        
+                        {/* Color Bar */}
+                        <div className="absolute top-0 left-0 w-2 h-full z-20" style={{ backgroundColor: item.color }} />
+                        
+                        {/* Content */}
+                        <div className="relative p-6 flex flex-col gap-3 z-20">
+                            <div className="flex justify-between items-start pl-4">
+                                <h4 className="text-xl font-albert-black text-black/90">{item.company}</h4>
+                                <span 
+                                    className="px-3 py-1 text-[10px] rounded-full font-bold border backdrop-blur-md"
+                                    style={{ 
+                                        backgroundColor: 'rgba(255,255,255,0.4)', 
+                                        borderColor: 'rgba(255,255,255,0.6)',
+                                        color: '#555' 
+                                    }}
+                                >
+                                    {item.year}
+                                </span>
+                            </div>
+                            <div className="text-sm font-albert-light text-gray-600 pl-4 flex items-center gap-2">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 w-3 h-3">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                                {item.role}
+                            </div>
+                            <p className="text-xs text-gray-500 font-albert-light leading-snug line-clamp-3 pl-4 mt-2">
+                                {item.desc}
+                            </p>
                         </div>
-                        <div className="text-sm font-albert-light text-gray-600 pl-4 flex items-center gap-2">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                            </svg>
-                            {item.role}
-                        </div>
-                        <p className="text-xs text-gray-500 font-albert-light leading-snug line-clamp-3 pl-4 mt-2">
-                            {item.desc}
-                        </p>
                     </motion.div>
                 ))}
             </div>

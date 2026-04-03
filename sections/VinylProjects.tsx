@@ -1251,7 +1251,8 @@ const ProjectImageSquare: React.FC<{
                 width: cardSize,
                 height: cardSize,
                 zIndex: isHovered ? 100 : style.zIndex, // Bring to front on hover
-                transformStyle: "preserve-3d"
+                transformStyle: "preserve-3d",
+                touchAction: "manipulation" // Prevent double-tap zoom on mobile
             }}
             // Animate scale and rotation
             animate={{
@@ -1775,8 +1776,21 @@ const VinylProjects: React.FC = () => {
 
              <motion.div 
                 className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center bg-white will-change-transform"
+                onClick={(e) => {
+                    // Only clear if clicking on the background, not on a card
+                    if (isMobile && e.target === e.currentTarget) {
+                        setHoveredProject(null);
+                    }
+                }}
              >
-                 <div className="absolute inset-0 flex items-center justify-center perspective-2000">
+                 <div 
+                    className="absolute inset-0 flex items-center justify-center perspective-2000"
+                    onClick={(e) => {
+                        if (isMobile && e.target === e.currentTarget) {
+                            setHoveredProject(null);
+                        }
+                    }}
+                 >
                     <motion.div
                         className="relative will-change-transform transform-gpu"
                         style={{
@@ -1938,9 +1952,19 @@ const VinylProjects: React.FC = () => {
                                         <ProjectImageSquare 
                                             project={proj}
                                             style={cardPositions[idx] as any}
-                                            onClick={() => setSelectedProject(proj)}
-                                            onHoverStart={() => handleProjectEnter(proj)}
-                                            onHoverEnd={handleProjectLeave}
+                                            onClick={() => {
+                                                if (isMobile) {
+                                                    if (hoveredProject?.id === proj.id) {
+                                                        setSelectedProject(proj);
+                                                    } else {
+                                                        handleProjectEnter(proj);
+                                                    }
+                                                } else {
+                                                    setSelectedProject(proj);
+                                                }
+                                            }}
+                                            onHoverStart={() => !isMobile && handleProjectEnter(proj)}
+                                            onHoverEnd={() => !isMobile && handleProjectLeave()}
                                             isHovered={hoveredProject?.id === proj.id}
                                             isAnyHovered={!!hoveredProject}
                                             isMobile={isMobile}

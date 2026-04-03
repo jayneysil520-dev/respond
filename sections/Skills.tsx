@@ -340,7 +340,7 @@ const FloorMarquee: React.FC<{ direction: 'left' | 'right', text: string, classN
 
 const MobileSkills: React.FC<{ skills: any[], softwares: any[] }> = ({ skills, softwares }) => {
     return (
-        <section className="w-full bg-white px-6 py-16 flex flex-col gap-12 relative z-30 overflow-hidden">
+        <section className="w-full bg-[#fafafa] px-6 py-16 flex flex-col gap-12 relative z-30 overflow-hidden">
             {/* Header */}
             <div className="text-center mt-8">
                 <h2 className="text-4xl font-albert-black text-black tracking-tighter">CAPABILITIES</h2>
@@ -355,22 +355,33 @@ const MobileSkills: React.FC<{ skills: any[], softwares: any[] }> = ({ skills, s
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-white rounded-[2rem] p-6 shadow-xl border border-gray-100 flex flex-col gap-4"
+                        className="relative rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden"
                     >
-                        <div className="flex justify-between items-end">
-                            <h3 className="text-xl font-albert-black text-black">{skill.title}</h3>
-                            <span className="text-xl font-albert-black" style={{ color: skill.color }}>{skill.percentText}</span>
+                        <div className="absolute inset-0 bg-white/60 backdrop-blur-md border border-white/60 rounded-[2rem] z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-60 pointer-events-none z-10" />
+                        
+                        <div className="relative p-6 flex flex-col gap-4 z-20">
+                            <div className="flex justify-between items-end">
+                                <h3 className="text-xl font-albert-black text-black/90">{skill.title}</h3>
+                                <span className="text-xl font-albert-black" style={{ color: skill.color }}>{skill.percentText}</span>
+                            </div>
+                            <div className="w-full h-3 bg-white/50 rounded-full overflow-hidden shadow-inner relative backdrop-blur-sm">
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: `${skill.percent}%` }}
+                                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                                    className="h-full rounded-full shadow-lg relative overflow-hidden"
+                                    style={{ backgroundColor: skill.color }}
+                                >
+                                    <motion.div 
+                                        className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg]"
+                                        animate={{ x: ['-100%', '200%'] }}
+                                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                    />
+                                </motion.div>
+                            </div>
+                            <div className="text-xs font-mono text-gray-500">{skill.tags}</div>
                         </div>
-                        <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-                            <motion.div 
-                                initial={{ width: 0 }}
-                                whileInView={{ width: `${skill.percent}%` }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
-                                className="h-full rounded-full"
-                                style={{ backgroundColor: skill.color }}
-                            />
-                        </div>
-                        <div className="text-xs font-mono text-gray-400">{skill.tags}</div>
                     </motion.div>
                 ))}
             </div>
@@ -388,8 +399,9 @@ const MobileSkills: React.FC<{ skills: any[], softwares: any[] }> = ({ skills, s
                             transition={{ delay: idx * 0.1 }}
                             className="flex flex-col items-center gap-3"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-white shadow-xl border border-gray-100 flex items-center justify-center p-3">
-                                <img src={sw.iconUrl} alt={sw.name} className="w-full h-full object-contain" />
+                            <div className="w-16 h-16 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_10px_20px_-5px_rgba(0,0,0,0.15),0_4px_0_rgba(255,255,255,0.3)] flex items-center justify-center p-3 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-60 pointer-events-none" />
+                                <img src={sw.iconUrl} alt={sw.name} className="w-full h-full object-contain relative z-10" />
                             </div>
                             <span className="font-mono text-[10px] text-gray-400">{sw.name}</span>
                         </motion.div>
