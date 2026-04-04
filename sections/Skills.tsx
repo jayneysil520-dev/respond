@@ -343,7 +343,7 @@ const MobileSkills: React.FC<{ skills: any[], softwares: any[] }> = ({ skills, s
         <section className="w-full bg-[#fafafa] px-6 py-16 flex flex-col gap-12 relative z-30 overflow-hidden">
             {/* Header */}
             <div className="text-center mt-8">
-                <h2 className="text-4xl font-albert-black text-black tracking-tighter">CAPABILITIES</h2>
+                <h2 className="text-4xl font-albert-black text-gray-200 tracking-tighter">CAPABILITIES</h2>
             </div>
             
             {/* Skills */}

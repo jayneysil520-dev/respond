@@ -287,14 +287,14 @@ const CARD_POSITIONS_DESKTOP = [
 ];
 
 const CARD_POSITIONS_MOBILE = [
-    { left: '10%',   top: '50%',  rotate: -15, zIndex: 1, scale: 0.8 }, 
-    { left: '60%',   top: '25%',  rotate: 8,   zIndex: 2, scale: 0.81 }, 
-    { left: '110%',  top: '55%',  rotate: -8,  zIndex: 3, scale: 0.78 }, 
-    { left: '160%',  top: '30%',  rotate: 12,  zIndex: 4, scale: 0.808 }, 
-    { left: '210%',  top: '60%',  rotate: -5,  zIndex: 5, scale: 0.8 }, 
-    { left: '260%',  top: '20%',  rotate: 15,  zIndex: 6, scale: 0.83 }, 
-    { left: '310%',  top: '50%',  rotate: -10, zIndex: 7, scale: 0.77 }, 
-    { left: '360%',  top: '28%',  rotate: 6,   zIndex: 8, scale: 0.81 },
+    { left: '10%',   top: '40%',  rotate: -10, zIndex: 1, scale: 0.85 }, 
+    { left: '60%',   top: '60%',  rotate: 5,   zIndex: 2, scale: 0.85 }, 
+    { left: '110%',  top: '35%',  rotate: -5,  zIndex: 3, scale: 0.85 }, 
+    { left: '160%',  top: '55%',  rotate: 8,   zIndex: 4, scale: 0.85 }, 
+    { left: '210%',  top: '30%',  rotate: -8,  zIndex: 5, scale: 0.85 }, 
+    { left: '260%',  top: '50%',  rotate: 10,  zIndex: 6, scale: 0.85 }, 
+    { left: '310%',  top: '25%',  rotate: -12, zIndex: 7, scale: 0.85 }, 
+    { left: '360%',  top: '45%',  rotate: 6,   zIndex: 8, scale: 0.85 },
 ];
 
 // --- DEPTH CONFIGURATION ---
