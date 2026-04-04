@@ -268,7 +268,7 @@ const PROJECTS_SCALE_MOBILE = 0.4;
 
 // 🟢 3. CARD DIMENSIONS: Standard dimensions before scaling
 const SQUARE_CARD_SIZE_DESKTOP = '380px';
-const SQUARE_CARD_SIZE_MOBILE = '350px';
+const SQUARE_CARD_SIZE_MOBILE = '400px';
 const PREVIEW_CARD_WIDTH = '750px';
 const PREVIEW_CARD_WIDTH_MOBILE = '900px';
 const PREVIEW_CARD_HEIGHT = '280px';
@@ -287,14 +287,14 @@ const CARD_POSITIONS_DESKTOP = [
 ];
 
 const CARD_POSITIONS_MOBILE = [
-    { left: '5%',    top: '10%',  rotate: -5,  zIndex: 1, scale: 0.7 }, 
-    { left: '55%',   top: '25%',  rotate: 5,   zIndex: 2, scale: 0.7 }, 
-    { left: '5%',    top: '40%',  rotate: -5,  zIndex: 3, scale: 0.7 }, 
-    { left: '55%',   top: '55%',  rotate: 5,   zIndex: 4, scale: 0.7 }, 
-    { left: '5%',    top: '70%',  rotate: -5,  zIndex: 5, scale: 0.7 }, 
-    { left: '55%',   top: '85%',  rotate: 5,   zIndex: 6, scale: 0.7 }, 
-    { left: '5%',    top: '100%', rotate: -5,  zIndex: 7, scale: 0.7 }, 
-    { left: '55%',   top: '115%', rotate: 5,   zIndex: 8, scale: 0.7 },
+    { left: '10%',   top: '40%',  rotate: -10, zIndex: 1, scale: 0.7 }, 
+    { left: '60%',   top: '60%',  rotate: 5,   zIndex: 1, scale: 0.7 }, 
+    { left: '110%',  top: '35%',  rotate: -5,  zIndex: 1, scale: 0.7 }, 
+    { left: '160%',  top: '55%',  rotate: 8,   zIndex: 1, scale: 0.7 }, 
+    { left: '210%',  top: '30%',  rotate: -8,  zIndex: 1, scale: 0.7 }, 
+    { left: '260%',  top: '50%',  rotate: 10,  zIndex: 1, scale: 0.7 }, 
+    { left: '310%',  top: '25%',  rotate: -12, zIndex: 1, scale: 0.7 }, 
+    { left: '360%',  top: '45%',  rotate: 6,   zIndex: 1, scale: 0.7 },
 ];
 
 // --- DEPTH CONFIGURATION ---
