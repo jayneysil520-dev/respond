@@ -268,7 +268,7 @@ const PROJECTS_SCALE_MOBILE = 0.4;
 
 // 🟢 3. CARD DIMENSIONS: Standard dimensions before scaling
 const SQUARE_CARD_SIZE_DESKTOP = '380px';
-const SQUARE_CARD_SIZE_MOBILE = '400px';
+const SQUARE_CARD_SIZE_MOBILE = '435px';
 const PREVIEW_CARD_WIDTH = '750px';
 const PREVIEW_CARD_WIDTH_MOBILE = '900px';
 const PREVIEW_CARD_HEIGHT = '280px';
@@ -287,14 +287,14 @@ const CARD_POSITIONS_DESKTOP = [
 ];
 
 const CARD_POSITIONS_MOBILE = [
-    { left: '10%',   top: '40%',  rotate: -10, zIndex: 1, scale: 0.7 }, 
-    { left: '60%',   top: '60%',  rotate: 5,   zIndex: 1, scale: 0.7 }, 
-    { left: '110%',  top: '35%',  rotate: -5,  zIndex: 1, scale: 0.7 }, 
-    { left: '160%',  top: '55%',  rotate: 8,   zIndex: 1, scale: 0.7 }, 
-    { left: '210%',  top: '30%',  rotate: -8,  zIndex: 1, scale: 0.7 }, 
-    { left: '260%',  top: '50%',  rotate: 10,  zIndex: 1, scale: 0.7 }, 
-    { left: '310%',  top: '25%',  rotate: -12, zIndex: 1, scale: 0.7 }, 
-    { left: '360%',  top: '45%',  rotate: 6,   zIndex: 1, scale: 0.7 },
+    { left: '-60%', top: '35%', rotate: -15, zIndex: 1, scale: 1.1 }, 
+    { left: '20%',  top: '10%', rotate: -10, zIndex: 2, scale: 1.1 }, 
+    { left: '100%', top: '35%', rotate: -5,  zIndex: 3, scale: 1.1 }, 
+    { left: '180%', top: '10%', rotate: 0,   zIndex: 4, scale: 1.1 }, 
+    { left: '260%', top: '35%', rotate: 5,   zIndex: 5, scale: 1.1 }, 
+    { left: '340%', top: '10%', rotate: 10,  zIndex: 6, scale: 1.1 }, 
+    { left: '420%', top: '35%', rotate: 15,  zIndex: 7, scale: 1.1 }, 
+    { left: '500%', top: '10%', rotate: 20,  zIndex: 8, scale: 1.1 },
 ];
 
 // --- DEPTH CONFIGURATION ---
@@ -1302,7 +1302,7 @@ const ProjectImageSquare: React.FC<{
 };
 
 // --- UPDATED COMPONENT: Gallery Modal View ---
-const GalleryModalView: React.FC<{ images: string[], projectId?: number, project?: any }> = ({ images, projectId, project }) => {
+const GalleryModalView: React.FC<{ images: string[], projectId?: number, project?: any, isMobile: boolean }> = ({ images, projectId, project, isMobile }) => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [scrollVal, setScrollVal] = useState(0);
     const [mouseVal, setMouseVal] = useState(0);
@@ -1392,9 +1392,10 @@ const GalleryModalView: React.FC<{ images: string[], projectId?: number, project
                                 <div 
                                     className="absolute z-20 pointer-events-none mix-blend-normal"
                                     style={{
-                                        top: `${project.project2Config.phoneImage.y ?? 100}px`,
-                                        left: `${project.project2Config.phoneImage.x ?? 650}px`,
-                                        width: `${project.project2Config.phoneImage.width ?? 280}px`
+                                        top: isMobile ? `${(project.project2Config.phoneImage.y ?? 100) * 0.4}px` : `${project.project2Config.phoneImage.y ?? 100}px`,
+                                        left: isMobile ? '50%' : `${project.project2Config.phoneImage.x ?? 650}px`,
+                                        transform: isMobile ? 'translateX(-50%)' : 'none',
+                                        width: isMobile ? `${(project.project2Config.phoneImage.width ?? 280) * 0.4}px` : `${project.project2Config.phoneImage.width ?? 280}px`
                                     }}
                                 >
                                     <img 
@@ -1412,14 +1413,14 @@ const GalleryModalView: React.FC<{ images: string[], projectId?: number, project
                                 className="w-full flex flex-col relative z-10"
                                 style={{
                                     marginBottom: project.project2Config.cards && project.project2Config.cards.length > 0
-                                        ? `${project.project2Config.cards[project.project2Config.cards.length - 1].y}px`
+                                        ? isMobile ? `${(project.project2Config.cards[project.project2Config.cards.length - 1].y ?? 0) * 0.4}px` : `${project.project2Config.cards[project.project2Config.cards.length - 1].y ?? 0}px`
                                         : '0px'
                                 }}
                             >
                                 {project.project2Config.cards && project.project2Config.cards.map((card: any) => {
                                     // 🟢 ANIMATION LOGIC: Cards 3-7 (Indices 2-6)
                                     const shouldAnimate = card.id >= 3 && card.id <= 7;
-                                    const finalY = card.y ?? 0;
+                                    const finalY = isMobile ? (card.y ?? 0) * 0.4 : (card.y ?? 0);
 
                                     return (
                                         <motion.img 
@@ -2002,6 +2003,7 @@ const VinylProjects: React.FC = () => {
                                         images={selectedProject.detailImages || []} 
                                         projectId={selectedProject.id} 
                                         project={selectedProject} 
+                                        isMobile={isMobile}
                                     />
                                 ) : (
                                     <div className="w-full h-full overflow-y-auto floating-scrollbar relative z-10">
