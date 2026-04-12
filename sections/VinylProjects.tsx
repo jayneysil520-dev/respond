@@ -1244,24 +1244,27 @@ const ProjectImageSquare: React.FC<{
     
     return (
         <motion.div
-            className="absolute cursor-pointer will-change-transform"
+            className="absolute cursor-pointer will-change-transform z-[100]"
             style={{
                 left: style.left,
                 top: style.top,
                 width: cardSize,
                 height: cardSize,
-                zIndex: isHovered ? 100 : style.zIndex, // Bring to front on hover
-                transformStyle: "preserve-3d"
+                transformStyle: "preserve-3d",
+                pointerEvents: "auto"
             }}
             // Animate scale and rotation
             animate={{
-                scale: isHovered ? 1.1 : style.scale,
-                rotate: isHovered ? 0 : style.rotate,
+                scale: isHovered && !isMobile ? 1.1 : style.scale,
+                rotate: isHovered && !isMobile ? 0 : style.rotate,
                 opacity: opacity,
-                y: isHovered ? -50 : 0
+                y: isHovered && !isMobile ? -50 : 0
             }}
             transition={{ type: "spring", stiffness: 40, damping: 15 }}
-            onClick={onClick}
+            onClick={(e) => {
+                e.stopPropagation();
+                onClick();
+            }}
             onMouseEnter={!isMobile ? onHoverStart : undefined}
             onMouseLeave={!isMobile ? onHoverEnd : undefined}
         >
