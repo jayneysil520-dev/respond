@@ -15,7 +15,7 @@ const HERO_SCALE_DESKTOP = 0.8;
 const HERO_SCALE_MOBILE = 0.5;
 
 // 🟢 2. CARD SIZE: Base dimensions
-const CARD_SIZE_CLASSES = "w-[200px] md:w-[300px]"; 
+const CARD_SIZE_CLASSES = "w-[180px] md:w-[300px]"; 
 
 // 🟢 3. SCATTERED LAYOUT CONFIGURATION (随机洒落布局)
 const CARD_LAYOUT_CONFIG_DESKTOP = [
@@ -30,14 +30,14 @@ const CARD_LAYOUT_CONFIG_DESKTOP = [
 ];
 
 const CARD_LAYOUT_CONFIG_MOBILE = [
-    { left: '25%',  top: '55%', zIndex: 32 }, 
-    { left: '-10%', top: '70%', zIndex: 35 }, 
-    { left: '75%',  top: '60%', zIndex: 30 }, 
-    { left: '40%',  top: '90%', zIndex: 25 }, 
-    { left: '-25%', top: '45%', zIndex: 37 }, 
-    { left: '95%',  top: '85%', zIndex: 36 }, 
-    { left: '-20%', top: '100%', zIndex: 36 }, 
-    { left: '85%',  top: '110%', zIndex: 10 }, 
+    { left: '5%',   top: '50%', zIndex: 32 }, 
+    { left: '55%',  top: '50%', zIndex: 35 }, 
+    { left: '5%',   top: '70%', zIndex: 30 }, 
+    { left: '55%',  top: '70%', zIndex: 25 }, 
+    { left: '5%',   top: '90%', zIndex: 37 }, 
+    { left: '55%',  top: '90%', zIndex: 36 }, 
+    { left: '5%',   top: '110%', zIndex: 36 }, 
+    { left: '55%',  top: '110%', zIndex: 10 }, 
 ];
 
 // --- DATA: Defined with RANDOMIZED SCALES (大小错落) & ROTATIONS (随机旋转) ---
