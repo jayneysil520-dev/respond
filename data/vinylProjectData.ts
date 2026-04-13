@@ -239,7 +239,11 @@ export const PROJECTS_DATA = [
         cardBorder: 'rgba(0,0,0,0.1)'
       },
       layout: 'gallery',
-      detailImages: ['https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%BF%E7%BC%96%E7%A8%8B/%E7%8C%BF%E7%BC%96%E7%A8%8B%E9%95%BF%E5%9B%BE%E6%9B%B4%E6%96%B03-10.png'],
+      detailImages: [
+        'https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%BF%E7%BC%96%E7%A8%8B/Frame-114_01.jpg',
+        'https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%BF%E7%BC%96%E7%A8%8B/Frame-114_02.jpg',
+        'https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%BF%E7%BC%96%E7%A8%8B/Frame-114_03.jpg'
+      ],
       detailText: { main: 'Yuan', sub: '运营设计 OPERATION DESIGN', signature: 'Tutor' }
   },
   { 

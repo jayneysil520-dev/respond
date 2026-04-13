@@ -176,7 +176,7 @@ const PROJECT_3_HOVER_CONFIG = [
     { 
         id: 'p3-5', 
         // 🇨🇳 CHINA OPTIMIZATION
-        url: 'https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%B1%E7%BC%96%E7%A8%8B/%E7%8C%B4%E5%AD%90.png', 
+        url: 'https://cdn.jsdmirror.com/gh/jayneysil520-dev/jayneysil@main/%E7%8C%BF%E7%BC%96%E7%A8%8B/%E7%8C%B4%E5%AD%90.png', 
         x: -364, 
         y: -50, 
         scale: 0.7, 
