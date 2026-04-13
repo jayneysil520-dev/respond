@@ -1936,7 +1936,7 @@ const VinylProjects: React.FC = () => {
                                 style={{ top: '5%', left: '0%' }}
                             />
 
-                            <div className="absolute w-full h-full" style={{ zIndex: 50, transformStyle: "preserve-3d", transform: `translateZ(${DEPTHS.PROJECTS}px)` }}>
+                            <div className="absolute w-full h-full pointer-events-none" style={{ zIndex: 50, transformStyle: "preserve-3d", transform: `translateZ(${DEPTHS.PROJECTS}px)` }}>
                                 {PROJECTS_DATA.map((proj, idx) => (
                                     <div key={proj.id} className="pointer-events-auto">
                                         <ProjectImageSquare 
