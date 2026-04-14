@@ -206,8 +206,6 @@ const FloatingHeroCard: React.FC<{ card: any, index: number, hasEntered: boolean
                 damping: 16,
                 mass: 1.1
             }} 
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             <motion.div
                 animate={{
@@ -235,6 +233,11 @@ const FloatingHeroCard: React.FC<{ card: any, index: number, hasEntered: boolean
                 }}
                 className="w-full h-full relative origin-bottom"
             >
+                <div 
+                    className="absolute inset-0 z-50 cursor-pointer"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                />
                 <Magnetic strength={40}>
                     <Spotlight3D 
                         className="w-full h-full rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/30 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)]" 

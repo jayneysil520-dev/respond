@@ -1244,14 +1244,14 @@ const ProjectImageSquare: React.FC<{
     
     return (
         <motion.div
-            className="absolute cursor-pointer will-change-transform z-[100]"
+            className="absolute will-change-transform z-[100]"
             style={{
                 left: style.left,
                 top: style.top,
                 width: cardSize,
                 height: cardSize,
                 transformStyle: "preserve-3d",
-                pointerEvents: "auto"
+                pointerEvents: "none"
             }}
             // Animate scale and rotation
             animate={{
@@ -1261,17 +1261,14 @@ const ProjectImageSquare: React.FC<{
                 y: isHovered && !isMobile ? -50 : 0
             }}
             transition={{ type: "spring", stiffness: 40, damping: 15 }}
-            onClick={(e) => {
-                e.stopPropagation();
-                onClick();
-            }}
-            onMouseEnter={!isMobile ? onHoverStart : undefined}
-            onMouseLeave={!isMobile ? onHoverEnd : undefined}
         >
             <Spotlight3D
                 color={project.color}
                 spotlightColor="rgba(255,255,255,0.4)"
-                className="w-full h-full rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border-[6px] border-white"
+                className="w-full h-full rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border-[6px] border-white pointer-events-auto cursor-pointer"
+                onClick={() => onClick()}
+                onMouseEnter={!isMobile ? onHoverStart : undefined}
+                onMouseLeave={!isMobile ? onHoverEnd : undefined}
             >
                 {/* Image */}
                 <div className="w-full h-full relative">

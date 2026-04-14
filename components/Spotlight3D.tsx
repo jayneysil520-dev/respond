@@ -6,7 +6,9 @@ interface Spotlight3DProps {
   children: React.ReactNode;
   color?: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   disableTilt?: boolean;
   spotlightColor?: string;
   enableElasticScale?: boolean;
@@ -17,6 +19,8 @@ const Spotlight3D: React.FC<Spotlight3DProps> = ({
   color = '#000000', 
   className = "", 
   onClick,
+  onMouseEnter,
+  onMouseLeave,
   disableTilt = false,
   spotlightColor = "rgba(255,255,255,0.6)",
   enableElasticScale = false
@@ -68,7 +72,11 @@ const Spotlight3D: React.FC<Spotlight3DProps> = ({
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={(e) => {
+        handleMouseLeave();
+        if (onMouseLeave) onMouseLeave();
+      }}
+      onMouseEnter={onMouseEnter}
       onClick={onClick}
       whileHover={enableElasticScale ? { scale: 1.05 } : undefined} // Reduced scale for smoother feel
       style={{
